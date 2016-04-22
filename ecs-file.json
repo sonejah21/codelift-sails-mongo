@@ -1,0 +1,59 @@
+{
+  "container_definitions": [
+    {
+      "name": "app",
+      "image": "",
+      "port_mappings": [
+        {
+          "protocol": "tcp",
+          "container_port": 1337,
+          "host_port": 0
+        }
+      ],
+      "command": [
+        "node",
+        "app.js",
+        "--prod"
+      ],
+      "environment": [
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "name": "DATABASE_URL",
+          "value": "mongodb://sonejah21:JmYe63KUKXicptEM6KF7ZA@db:27017/Test #1"
+        }
+      ],
+      "links": [
+        "db"
+      ]
+    },
+    {
+      "name": "db",
+      "image": "mongo",
+      "port_mappings": [
+        {
+          "protocol": "tcp",
+          "container_port": 27017,
+          "host_port": 0
+        }
+      ],
+      "environment": [
+        {
+          "name": "MONGO_DB",
+          "value": "Test #1"
+        },
+        {
+          "name": "MONGODB_USER",
+          "value": "sonejah21"
+        },
+        {
+          "name": "MONGODB_PASSWORD",
+          "value": "JmYe63KUKXicptEM6KF7ZA"
+        }
+      ]
+    }
+  ],
+  "family": "sonejah21codelift-sails-mongo"
+}

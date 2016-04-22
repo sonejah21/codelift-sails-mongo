@@ -1,0 +1,65 @@
+{
+  "services": [
+    {
+      "name": "app",
+      "image": "",
+      "container_ports": [
+        {
+          "protocol": "tcp",
+          "inner_port": 1337,
+          "published": true,
+          "outer_port": 2536
+        }
+      ],
+      "run_command": "node app.js --prod",
+      "container_envvars": [
+        {
+          "key": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "key": "DATABASE_URL",
+          "value": "mongodb://sonejah21:JmYe63KUKXicptEM6KF7ZA@db:27017/Test #1"
+        }
+      ],
+      "linked_to_service": [
+        {
+          "name": "db",
+          "to_service": "db"
+        }
+      ],
+      "target_num_containers": 1,
+      "sequential_deployment": true,
+      "autorestart": "ALWAYS",
+      "autoredeploy": true
+    },
+    {
+      "name": "db",
+      "image": "mongo",
+      "target_num_containers": 1,
+      "sequential_deployment": true,
+      "container_ports": [
+        {
+          "protocol": "tcp",
+          "inner_port": "27017",
+          "published": true
+        }
+      ],
+      "container_envvars": [
+        {
+          "key": "MONGO_DB",
+          "value": "Test #1"
+        },
+        {
+          "key": "MONGODB_USER",
+          "value": "sonejah21"
+        },
+        {
+          "key": "MONGODB_PASSWORD",
+          "value": "JmYe63KUKXicptEM6KF7ZA"
+        }
+      ]
+    }
+  ],
+  "name": "sonejah21codelift-sails-mongo"
+}
