@@ -1,0 +1,22 @@
+---
+version: '2'
+services:
+  app:
+    ports:
+    - 1337:1337
+    command: node app.js --prod
+    links:
+    - db
+    extends:
+      service: common
+  common:
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: 'mongodb://sonejah21:JmYe63KUKXicptEM6KF7ZA@db:27017/Test #1'
+    build: "."
+  db:
+    image: mongo
+    environment:
+      MONGODB_DB: 'Test #1'
+      MONGODB_USER: sonejah21
+      MONGODB_PASSWORD: JmYe63KUKXicptEM6KF7ZA
